@@ -3,11 +3,11 @@ export default ({ palette, font, ...rest }) => ({
   palette: {
     ...palette,
     primary: palette.secondary,
-    secondary: palette.primary,
+    secondary: palette.primary
   },
   font: {
     ...font,
     primary: font.secondary,
-    secondary: font.primary,
-  },
+    secondary: font.primary
+  }
 });
