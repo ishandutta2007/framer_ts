@@ -6,17 +6,17 @@ const ManifestVersionSyncPlugin = require('webpack-manifest-version-sync-plugin'
 
 module.exports = {
   entry: {
-    options: './src/options.js',
-    popup: './src/popup.js',
-    content: './src/content.js',
-    background: './src/background.js',
+    options: './src/options.tsx',
+    popup: './src/popup.tsx',
+    content: './src/content.tsx',
+    background: './src/background.tsx',
   },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'build'),
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     alias: {
       react: 'preact/compat',
@@ -25,12 +25,30 @@ module.exports = {
   },
   module: {
     rules: [
+      // {
+      //   test: /\.tsx?$/,
+      //   use: 'ts-loader',
+      //   exclude: /node_modules/,
+      //   // use: [
+      //   //   {
+      //   //     loader:'ts-loader',
+      //   //   },
+      //   // ],
+      // },
       {
-        test: /\.jsx?$/,
+        // test: /\.jsx?$/,
+        test: /\.(tsx|jsx|ts|js)x?$/,
         exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
+            options: {
+              presets: [
+                "@babel/preset-env",
+                "@babel/preset-react",
+                "@babel/preset-typescript",
+              ],
+            },
           },
         ],
       },
